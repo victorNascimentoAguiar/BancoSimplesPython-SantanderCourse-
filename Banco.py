@@ -1,10 +1,53 @@
 menu = """ 
-
+[c] Cadastro
+[x] Criar conta corrente
 [d] Depositar
 [s] Sacar
 [e] Extato
 [f] Finalizar seção
 """
+Dados_Usuario ={}
+Dados_Contas_Correntes = {}
+conta = 1
+def usuario () :
+    
+    cpf = input('informe seu CPF: ')
+    nome= input('Informe seu nome: ')
+    logradouro= input('Informe seu Logradouro: ')
+    bairro= input('Informe seu Bairro: ')
+    cidade= input('Informe sua Cidade: ')
+    estado= input('Informe seu Estado: ' )
+    
+    if cpf in Dados_Usuario:
+        print("CPF ja cadastrado")
+        return
+    
+    Dados_Usuario[cpf] = {
+        "nome": nome,
+        "logradouro": logradouro,
+        "bairro": bairro,
+        "cidade": cidade,
+        "estado": estado
+    }
+    print("Usuario criado")
+
+def conta_Corrente () :
+    global conta
+    agencia = '001'
+    usuario = input('digite seu CPF: ')
+    
+    if usuario  not in Dados_Usuario :
+        print('CPF nao casdastrado')
+        return
+    
+    Dados_Contas_Correntes[conta] = {
+
+        'usuario' : usuario,
+        'agencia' : agencia
+    }
+
+    print('conta corrente criada')
+    conta += 1
 
 saldo = 0
 limite = 500
@@ -60,6 +103,13 @@ while True:
 
 
                """)
+    elif opcao == 'c':
+        usuario ()
+        print(Dados_Usuario)
+    elif opcao == 'x':
+        conta_Corrente ()
+        print(Dados_Contas_Correntes)
+
         #comando para finalizar o programa
     elif opcao == 'f':
         print('finalizando')
